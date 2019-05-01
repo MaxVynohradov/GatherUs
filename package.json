@@ -4,17 +4,60 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "commit": "npx git-cz",
+    "check-staged": "lint-staged",
+    "lint": "npx eslint ./app -c .eslintrc.js --ext js,jsx",
+    "lint:write": "npx eslint ./app -c .eslintrc.js --ext js,jsx --fix"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "npx commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npx lint-staged",
+      "postcommit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx)": [
+      "yarn run lint:write",
+      "git add"
+    ]
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "dayjs": "^1.8.13",
+    "prop-types": "^15.7.2",
     "react": "16.8.3",
-    "react-native": "0.59.5"
+    "react-native": "0.59.5",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/runtime": "^7.4.4",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
+    "commitizen": "^3.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-native": "^3.7.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^2.1.0",
     "jest": "^24.7.1",
+    "lint-staged": "^8.1.5",
     "metro-react-native-babel-preset": "^0.53.1",
     "react-test-renderer": "16.8.3"
   },
