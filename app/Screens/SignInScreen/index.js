@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, Button } from 'react-native'
+import { connect } from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage'
 import { LoginButton, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk'
 
-export default class SignInScreen extends React.Component {
+class SignInScreen extends React.Component {
   static navigationOptions = {
     title: 'Please sign in',
   };
@@ -75,3 +76,19 @@ export default class SignInScreen extends React.Component {
     this.props.navigation.navigate('App')
   };
 }
+
+const mapStateToProps = store => {
+  console.log(store)
+  return {
+    fbData: store.fbData,
+  }
+}
+
+// const mapDispatchToProps = dispatch => ({
+//   setTagAction: tag => dispatch(setTag(tag)),
+// })
+
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps,
+)(SignInScreen)
