@@ -3,6 +3,7 @@ import { View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage'
 import { LoginButton, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk'
+import { setTag } from './actions'
 
 class SignInScreen extends React.Component {
   static navigationOptions = {
@@ -72,6 +73,8 @@ class SignInScreen extends React.Component {
   }
 
   _signInAsync = async () => {
+    console.log('@@@')
+    this.props.setTagAction(`green ${Math.random().toString()}`)
     await AsyncStorage.setItem('userToken', 'abc')
     this.props.navigation.navigate('App')
   };
@@ -84,11 +87,11 @@ const mapStateToProps = store => {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   setTagAction: tag => dispatch(setTag(tag)),
-// })
+const mapDispatchToProps = dispatch => ({
+  setTagAction: tag => dispatch(setTag(tag)),
+})
 
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps,
+  mapDispatchToProps,
 )(SignInScreen)
