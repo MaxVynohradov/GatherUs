@@ -6,8 +6,7 @@ import image from '../../Assets/Images/logo/icon.png'
 
 const loadUserData = async (navigation) => {
   const userToken = await AsyncStorage.getItem('userToken')
-  console.log('!!', userToken)
-  setTimeout(() => navigation.navigate(userToken ? 'App' : 'Auth'), 3000)
+  setTimeout(() => navigation.navigate(userToken ? 'App' : 'Auth'), 0)
 }
 
 export default class SplashScreen extends React.Component {

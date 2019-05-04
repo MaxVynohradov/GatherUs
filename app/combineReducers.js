@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import signInReducer from './Screens/SignInScreen/reducer'
+import fbLoginReducer from './Screens/FbLoginScreen/reducer'
 
 export const rootReducer = combineReducers({
-  fbData: signInReducer,
+  fbData: fbLoginReducer,
 })

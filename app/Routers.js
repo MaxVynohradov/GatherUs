@@ -1,5 +1,5 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
-import SignInScreen from './Screens/SignInScreen'
+import FbLoginScreen from './Screens/FbLoginScreen'
 import SplashScreen from './Screens/SplashScreen'
 import HomeScreen from './Screens/HomeScreen'
 import DetailsScreen from './Screens/DetailsScreen'
@@ -13,7 +13,14 @@ const AppStack = createStackNavigator(
     initialRouteName: 'Home',
   },
 )
-const AuthStack = createStackNavigator({ SignIn: SignInScreen })
+const AuthStack = createStackNavigator(
+  {
+    FbLogin: FbLoginScreen,
+  },
+  {
+    initialRouteName: 'FbLogin',
+  },
+)
 
 const AppNavigator = createSwitchNavigator(
   {
