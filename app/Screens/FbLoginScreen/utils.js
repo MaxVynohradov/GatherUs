@@ -5,7 +5,7 @@ import {
   GraphRequestManager,
 } from 'react-native-fbsdk'
 
-import { Alert } from 'react-native'
+import { alertError } from '../../Shared/utils'
 
 const FB_PERMISSIONS = ['public_profile', 'email']
 const FB_PROFILE_FIELDS = 'gender,email,name,friends,first_name,last_name,picture.type(large)'
@@ -21,11 +21,11 @@ export async function facebookLogin () {
       LoginManager.setLoginBehavior('WEB_ONLY')
       result = await LoginManager.logInWithReadPermissions(FB_PERMISSIONS)
     } catch (webError) {
-      return Alert.alert('Request to FB has been interrupted')
+      return alertError('Request to FB has been interrupted')
     }
   }
   if (result.isCancelled) {
-    return Alert.alert('Request to FB has been cancelled')
+    return alertError('Request to FB has been cancelled')
   }
   const currentAccessToken = await AccessToken.getCurrentAccessToken()
   try {
@@ -36,7 +36,7 @@ export async function facebookLogin () {
     ))
     return { currentAccessToken, userData }
   } catch (error) {
-    return Alert.alert('Request to FB has been interrupted')
+    return alertError('Request to FB has been interrupted')
   }
 }
 
