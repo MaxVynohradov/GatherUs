@@ -1,16 +1,24 @@
 import React from 'react'
-import { View, Button } from 'react-native'
+import { View } from 'react-native'
+import { SocialIcon } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { setUser } from './actions'
 import { facebookLogin } from './utils'
+import styles from './styles'
 
 class FbLoginScreen extends React.Component {
   static navigationOptions = { header: null }
 
   render () {
     return (
-      <View>
-        <Button title="Sign in!" onPress={this._fbLoginAsync} />
+      <View style={styles.mainView}>
+        <SocialIcon
+          title='Sign In With Facebook'
+          button
+          style={styles.fbButton}
+          type='facebook'
+          onPress={this._fbLoginAsync}
+        />
       </View>
     )
   }
